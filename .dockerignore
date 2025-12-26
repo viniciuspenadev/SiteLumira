@@ -1,0 +1,6 @@
+.git
+.gitignore
+.env.local
+desativado/
+README.md
+**/.DS_Store
