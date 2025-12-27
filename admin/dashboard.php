@@ -49,6 +49,7 @@ if ($selectedId) {
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -281,6 +282,9 @@ if ($selectedId) {
             <p>Escolha um contato na lista ao lado para ver o histórico e detalhes.</p>
         </div>
     <?php endif; ?>
+
+    <!-- Auto Token Refresh -->
+    <?php include 'components/auto_refresh.php'; ?>
 
     <!-- Init Icons -->
     <script>

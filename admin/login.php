@@ -79,10 +79,21 @@ $sbKey = $secrets['SUPABASE_KEY'];
                 btn.disabled = false;
                 btn.innerText = 'Entrar';
             } else {
-                // Login successful. Save token to cookie securely.
-                // Expires in 1 hour (3600s)
-                document.cookie = `sb_access_token=${data.session.access_token}; path=/; max-age=3600; SameSite=Strict`;
-                document.cookie = `sb_refresh_token=${data.session.refresh_token}; path=/; max-age=3600; SameSite=Strict`;
+                // Login successful - Save tokens with smart security
+                const isSecure = (window.location.protocol === 'https:');
+                const secureFlag = isSecure ? '; Secure' : '';
+                const expiresIn = 604800; // 7 days in seconds
+
+                // Access Token: Needs to be readable by JS (for API calls)
+                document.cookie = `sb_access_token=${data.session.access_token}; path=/; max-age=${expiresIn}; SameSite=Strict${secureFlag}`;
+
+                // Refresh Token: Store for future auto-refresh
+                // NOTE: Cannot set HttpOnly via JavaScript (requires server-side), but using same security flags
+                document.cookie = `sb_refresh_token=${data.session.refresh_token}; path=/; max-age=${expiresIn}; SameSite=Strict${secureFlag}`;
+
+                // Store expiration timestamp for auto-refresh logic
+                const expiresAt = Date.now() + (expiresIn * 1000);
+                document.cookie = `sb_token_expires=${expiresAt}; path=/; max-age=${expiresIn}; SameSite=Strict${secureFlag}`;
 
                 window.location.href = 'dashboard.php';
             }
