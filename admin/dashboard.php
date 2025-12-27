@@ -50,6 +50,7 @@ if ($selectedId) {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="assets/css/mobile-admin.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -59,11 +60,17 @@ if ($selectedId) {
 
 <body class="bg-gray-100 h-screen flex overflow-hidden">
 
-    <!-- Global Nav -->
+    <!-- Mobile Header -->
+    <?php
+    $custom_header_title = 'Chat CRM';
+    include 'components/responsive_header.php';
+    ?>
+
+    <!-- Global Nav (Desktop Sidebar) -->
     <?php include 'components/sidebar.php'; ?>
 
     <!-- SIDEBAR: Conversation List -->
-    <div class="w-80 bg-white border-r border-gray-200 flex flex-col h-full">
+    <div id="conversation-list" class="w-full lg:w-80 bg-white border-r border-gray-200 flex flex-col h-full">
         <div class="p-4 border-b border-gray-200 bg-gray-50 flex justify-between items-center">
             <h2 class="font-bold text-lg text-slate-800">Conversas</h2>
             <div class="flex gap-2">
@@ -112,9 +119,9 @@ if ($selectedId) {
         </div>
     </div>
 
-    <!-- MAIN AREA -->
+    <!-- MAIN AREA: Chat + Details -->
     <?php if ($currentConv): ?>
-        <div class="flex-1 flex flex-col h-full relative">
+        <div id="chat-area" class="hidden lg:flex flex-1 flex-col h-full relative">
 
             <!-- Chat Header -->
             <div class="h-16 border-b border-gray-200 bg-white flex items-center justify-between px-6 shadow-sm z-10">
@@ -285,6 +292,90 @@ if ($selectedId) {
 
     <!-- Auto Token Refresh -->
     <?php include 'components/auto_refresh.php'; ?>
+
+    <!-- Mobile Bottom Navigation -->
+    <?php include 'components/mobile_nav.php'; ?>
+
+    <!-- Mobile View Toggle Script -->
+    <script>
+        // Mobile: Toggle between conversation list and chat view
+        function initMobileChat() {
+            const conversationLinks = document.querySelectorAll('[href*="chat_id"]');
+            const conversationList = document.getElementById('conversation-list');
+            const chatArea = document.getElementById('chat-area');
+
+            // Only apply mobile behavior on small screens
+            function isMobile() {
+                return window.innerWidth < 1024; // lg breakpoint
+            }
+
+            // Show chat, hide list (mobile only)
+            function showChat() {
+                if (isMobile() && conversationList && chatArea) {
+                    conversationList.classList.add('hidden');
+                    chatArea.classList.remove('hidden');
+                    chatArea.classList.add('flex');
+                }
+            }
+
+            // Show list, hide chat (mobile only)
+            function showList() {
+                if (isMobile() && conversationList && chatArea) {
+                    conversationList.classList.remove('hidden');
+                    chatArea.classList.add('hidden');
+                    chatArea.classList.remove('flex');
+                }
+            }
+
+            // Reset to desktop layout
+            function resetDesktop() {
+                if (!isMobile() && conversationList && chatArea) {
+                    conversationList.classList.remove('hidden');
+                    chatArea.classList.remove('hidden');
+                    chatArea.classList.add('flex');
+                }
+            }
+
+            // On conversation click in mobile
+            conversationLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (isMobile()) {
+                        showChat();
+                    }
+                });
+            });
+
+            // Add back button to mobile chat header if needed
+            const chatHeader = chatArea?.querySelector('.h-16');
+            if (chatHeader && isMobile()) {
+                const backBtn = document.createElement('button');
+                backBtn.className = 'lg:hidden p-2 hover:bg-gray-100 rounded-lg mr-2 touch-target';
+                backBtn.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                `;
+                backBtn.onclick = showList;
+                chatHeader.querySelector('.flex').prepend(backBtn);
+            }
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                if (!isMobile()) {
+                    resetDesktop();
+                }
+            });
+
+            // Initial state: If on mobile and chat is selected, show chat
+            if (isMobile() && chatArea && !chatArea.classList.contains('hidden')) {
+                showChat();
+            }
+        }
+
+        // Init after page load
+        document.addEventListener('DOMContentLoaded', initMobileChat);
+    </script>
 
     <!-- Init Icons -->
     <script>

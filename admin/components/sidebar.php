@@ -10,8 +10,8 @@ $current_uri = $_SERVER['REQUEST_URI'];
 $is_chat = strpos($current_uri, 'dashboard') !== false;
 $is_jobs = strpos($current_uri, 'admin/jobs') !== false;
 ?>
-<!-- Main Navigation Rail -->
-<div class="w-20 bg-lumira-dark flex flex-col items-center py-6 shrink-0 z-50">
+<!-- Main Navigation Rail (Desktop Only) -->
+<div class="w-20 bg-lumira-dark hidden lg:flex flex-col items-center py-6 shrink-0 z-50 desktop-sidebar">
     <!-- Logo Icon -->
     <div class="mb-8">
         <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-white">

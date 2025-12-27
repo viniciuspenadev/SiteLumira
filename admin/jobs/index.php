@@ -56,18 +56,25 @@ try {
     <title>Gerenciar Vagas - Admin Lumirá</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../assets/css/mobile-admin.css">
 </head>
 
 <body class="bg-gray-100 h-screen flex overflow-hidden font-sans">
 
-    <!-- Global Nav -->
+    <!-- Mobile Header -->
+    <?php
+    $custom_header_title = 'Vagas';
+    include '../components/responsive_header.php';
+    ?>
+
+    <!-- Global Nav (Desktop Sidebar) -->
     <?php include '../components/sidebar.php'; ?>
 
     <div class="flex-1 flex flex-col h-full overflow-hidden">
 
-        <!-- Top Bar -->
+        <!-- Top Bar (Desktop Only) -->
         <header
-            class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shadow-sm z-10 shrink-0">
+            class="hidden lg:flex h-16 bg-white border-b border-gray-200 items-center justify-between px-8 shadow-sm z-10 shrink-0">
             <div>
                 <h1 class="text-xl font-bold text-slate-800">Gerenciar Vagas</h1>
                 <p class="text-xs text-slate-500">Módulo de Recrutamento</p>
@@ -132,8 +139,123 @@ try {
                 </a>
             </div>
 
-            <!-- Job List -->
-            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+            <!-- Job List: Mobile Cards (< lg) -->
+            <div class="lg:hidden space-y-4">
+                <?php if ($jobs && count($jobs) > 0): ?>
+                    <?php foreach ($jobs as $job): ?>
+                        <div class="mobile-card animate-fade-in">
+                            <!-- Card Header -->
+                            <div class="flex justify-between items-start mb-3">
+                                <div class="flex-1">
+                                    <h3 class="mobile-card-title"><?php echo htmlspecialchars($job['title']); ?></h3>
+                                    <div class="mobile-card-meta">
+                                        <span>🏢 <?php echo htmlspecialchars($job['department']); ?></span>
+                                        <span>📍 <?php echo htmlspecialchars($job['location']); ?></span>
+                                        <span>💼 <?php echo htmlspecialchars($job['type']); ?></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Status Badge -->
+                            <div class="mb-3">
+                                <?php if (!$job['active']): ?>
+                                    <span
+                                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200">
+                                        <span class="w-2 h-2 rounded-full bg-slate-400"></span> ARQUIVADA
+                                    </span>
+                                <?php elseif (($job['status'] ?? 'open') === 'closed'): ?>
+                                    <span
+                                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-orange-50 text-orange-600 border border-orange-100">
+                                        <span class="w-2 h-2 rounded-full bg-orange-400"></span> ENCERRADA
+                                    </span>
+                                <?php else: ?>
+                                    <span
+                                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-green-50 text-green-600 border border-green-100">
+                                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> ABERTA
+                                    </span>
+                                <?php endif; ?>
+
+                                <span class="text-xs text-slate-400 ml-2">
+                                    <?php echo date('d/m/Y', strtotime($job['created_at'])); ?>
+                                </span>
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="mobile-card-actions">
+                                <!-- Candidates -->
+                                <a href="applications.php?id=<?php echo $job['id']; ?>"
+                                    class="touch-target flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-indigo-50 text-indigo-600 rounded-lg font-medium text-sm hover:bg-indigo-100 transition">
+                                    <i data-lucide="users" class="w-4 h-4"></i>
+                                    <span>Candidatos</span>
+                                </a>
+
+                                <!-- Edit -->
+                                <a href="manage.php?id=<?php echo $job['id']; ?>"
+                                    class="touch-target flex items-center justify-center px-4 py-2.5 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition">
+                                    <i data-lucide="edit-2" class="w-5 h-5"></i>
+                                </a>
+
+                                <!-- More Actions Menu Toggle -->
+                                <button onclick="toggleMobileMenu('job-<?php echo $job['id']; ?>')"
+                                    class="touch-target flex items-center justify-center px-4 py-2.5 bg-gray-50 text-gray-600 rounded-lg hover:bg-gray-100 transition">
+                                    <i data-lucide="more-vertical" class="w-5 h-5"></i>
+                                </button>
+                            </div>
+
+                            <!-- Mobile Action Menu (Hidden by default) -->
+                            <div id="job-<?php echo $job['id']; ?>-menu"
+                                class="hidden mt-3 pt-3 border-t border-gray-100 space-y-2">
+                                <?php if (!$job['active']): ?>
+                                    <a href="index.php?open_id=<?php echo $job['id']; ?>"
+                                        class="touch-target w-full flex items-center gap-3 px-4 py-3 bg-green-50 text-green-700 rounded-lg font-medium text-sm">
+                                        <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+                                        Reativar / Publicar
+                                    </a>
+                                <?php else: ?>
+                                    <?php if (($job['status'] ?? 'open') === 'open'): ?>
+                                        <a href="index.php?close_id=<?php echo $job['id']; ?>"
+                                            class="touch-target w-full flex items-center gap-3 px-4 py-3 bg-orange-50 text-orange-700 rounded-lg font-medium text-sm">
+                                            <i data-lucide="lock" class="w-4 h-4"></i>
+                                            Encerrar Vaga
+                                        </a>
+                                    <?php else: ?>
+                                        <a href="index.php?open_id=<?php echo $job['id']; ?>"
+                                            class="touch-target w-full flex items-center gap-3 px-4 py-3 bg-green-50 text-green-700 rounded-lg font-medium text-sm">
+                                            <i data-lucide="unlock" class="w-4 h-4"></i>
+                                            Reabrir Vaga
+                                        </a>
+                                    <?php endif; ?>
+
+                                    <a href="index.php?archive_id=<?php echo $job['id']; ?>"
+                                        class="touch-target w-full flex items-center gap-3 px-4 py-3 bg-slate-50 text-slate-700 rounded-lg font-medium text-sm">
+                                        <i data-lucide="archive" class="w-4 h-4"></i>
+                                        Arquivar (Ocultar)
+                                    </a>
+                                <?php endif; ?>
+
+                                <a href="index.php?delete_id=<?php echo $job['id']; ?>"
+                                    onclick="return confirm('Tem certeza que deseja excluir esta vaga?')"
+                                    class="touch-target w-full flex items-center gap-3 px-4 py-3 bg-red-50 text-red-700 rounded-lg font-medium text-sm">
+                                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                    Excluir Permanentemente
+                                </a>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <!-- Empty State Mobile -->
+                    <div class="mobile-card text-center py-8">
+                        <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="briefcase" class="w-8 h-8 text-gray-400"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-600 mb-2">Nenhuma vaga cadastrada</h3>
+                        <p class="text-sm text-slate-400">Clique em "Nova Vaga" para começar.</p>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+            <!-- Job List: Desktop Table (≥ lg) -->
+            <div class="hidden lg:block bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
                 <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center">
                     <h2 class="font-bold text-slate-800">Listagem de Vagas</h2>
                     <div class="text-xs text-slate-400">Ordenado por criação</div>
@@ -269,6 +391,26 @@ try {
 
         </main>
     </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <?php include '../components/mobile_nav.php'; ?>
+
+    <!-- Floating Action Button (Mobile) -->
+    <a href="manage.php"
+        class="lg:hidden fixed bottom-20 right-4 w-14 h-14 bg-lumira-blue text-white rounded-full shadow-lg flex items-center justify-center z-40 hover:bg-blue-600 transition-all hover:scale-110"
+        style="box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);">
+        <i data-lucide="plus" class="w-6 h-6"></i>
+    </a>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+        function toggleMobileMenu(jobId) {
+            const menu = document.getElementById(jobId + '-menu');
+            if (menu) {
+                menu.classList.toggle('hidden');
+            }
+        }
+    </script>
 
     <script>
         lucide.createIcons();

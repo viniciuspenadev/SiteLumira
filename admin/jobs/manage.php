@@ -74,6 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title><?php echo $id ? 'Editar' : 'Nova'; ?> Vaga - Admin Lumirá</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../assets/css/mobile-admin.css">
     <style>
         .animate-fade-in-up {
             animation: fadeInUp 0.3s ease-out;
@@ -95,7 +96,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body class="bg-gray-100 h-screen flex overflow-hidden font-sans">
 
-    <!-- Global Nav -->
+    <!-- Mobile Header with Back -->
+    <?php
+    $custom_header_title = ($id ? 'Editar' : 'Nova') . ' Vaga';
+    $custom_header_back_url = 'index.php';
+    include '../components/responsive_header.php';
+    ?>
+
+    <!-- Global Nav (Desktop Sidebar) -->
     <?php include '../components/sidebar.php'; ?>
 
     <script>
@@ -231,15 +239,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </header>
 
-        <main class="flex-1 overflow-y-auto p-8 bg-gray-50/50">
+        <main class="flex-1 overflow-y-auto p-4 lg:p-8 bg-gray-50/50">
 
             <div class="max-w-4xl mx-auto">
                 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
 
-                    <form method="POST" class="p-8 space-y-8">
+                    <form method="POST" class="p-4 lg:p-8 space-y-6 lg:space-y-8">
 
                         <!-- Header Form -->
-                        <div class="flex items-center justify-between">
+                        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
                             <h2 class="font-bold text-lg text-slate-700">Informações Principais</h2>
 
                             <!-- Controls: Status & Visibility -->
@@ -401,6 +409,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         </main>
     </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <?php include '../components/mobile_nav.php'; ?>
 
     <script>
         lucide.createIcons();

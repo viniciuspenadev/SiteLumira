@@ -31,18 +31,26 @@ $applications = $supabase->getApplications($job_id);
     <title>Candidatos - <?php echo $job['title']; ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../assets/css/mobile-admin.css">
 </head>
 
 <body class="bg-gray-100 h-screen flex overflow-hidden font-sans">
 
-    <!-- Global Nav -->
+    <!-- Mobile Header with Back -->
+    <?php
+    $custom_header_title = 'Candidatos';
+    $custom_header_back_url = 'index.php';
+    include '../components/responsive_header.php';
+    ?>
+
+    <!-- Global Nav (Desktop Sidebar) -->
     <?php include '../components/sidebar.php'; ?>
 
     <div class="flex-1 flex flex-col h-full overflow-hidden">
 
-        <!-- Top Bar -->
+        <!-- Top Bar (Desktop Only) -->
         <header
-            class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shadow-sm z-10 shrink-0">
+            class="hidden lg:flex h-16 bg-white border-b border-gray-200 items-center justify-between px-8 shadow-sm z-10 shrink-0">
             <h1 class="text-xl font-bold text-slate-800 flex items-center gap-2">
                 <a href="index.php" class="text-slate-400 hover:text-slate-600 transition-colors">
                     <i data-lucide="arrow-left" class="w-5 h-5"></i>
@@ -130,6 +138,9 @@ $applications = $supabase->getApplications($job_id);
 
         </main>
     </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <?php include '../components/mobile_nav.php'; ?>
 
     <script>
         lucide.createIcons();
