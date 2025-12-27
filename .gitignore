@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Security
-includes/secrets.php
+# Credentials
+includes/secrets.local.php
+.env

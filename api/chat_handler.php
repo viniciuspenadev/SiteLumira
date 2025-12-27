@@ -6,7 +6,8 @@ $allowed_origins = [
     'http://localhost',
     'http://127.0.0.1',
     'https://colegiolumira.com.br',
-    'https://www.colegiolumira.com.br'
+    'https://www.colegiolumira.com.br',
+    'https://lumira.aiconverse.com.br'
 ];
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? $_SERVER['HTTP_REFERER'] ?? '';

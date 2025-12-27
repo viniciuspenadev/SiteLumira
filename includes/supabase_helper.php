@@ -8,7 +8,7 @@ class SupabaseHelper
 
     public function __construct($url, $key)
     {
-        $this->url = rtrim($url, '/');
+        $this->url = $url ? rtrim($url, '/') : '';
         $this->anonKey = $key;
         $this->authToken = $key; // Default to anon auth
     }
