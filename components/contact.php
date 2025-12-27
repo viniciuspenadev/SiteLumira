@@ -107,12 +107,21 @@
                         <textarea id="message" rows="4" required
                             class="w-full px-4 py-3 rounded-xl bg-gray-50 border-2 border-transparent focus:border-lumira-blue/50 focus:bg-white focus:outline-none transition-all resize-none"
                             placeholder="Gostaria de agendar uma visita para..."></textarea>
-                    </div>
+                        <div class="flex items-start gap-3">
+                            <div class="flex items-center h-5">
+                                <input id="privacy-consent" type="checkbox" required
+                                    class="w-5 h-5 border border-gray-300 rounded focus:ring-3 focus:ring-lumira-blue/30 bg-gray-50 text-lumira-blue" />
+                            </div>
+                            <label for="privacy-consent" class="text-sm text-slate-500">
+                                Li e concordo com a <a href="politica-de-privacidade.php" target="_blank"
+                                    class="text-lumira-blue font-bold hover:underline">Política de Privacidade</a>.
+                            </label>
+                        </div>
 
-                    <button type="submit"
-                        class="w-full py-4 bg-lumira-dark text-white rounded-xl font-bold text-lg hover:bg-lumira-blue transition-colors shadow-lg hover:shadow-xl">
-                        Enviar Mensagem
-                    </button>
+                        <button type="submit"
+                            class="w-full py-4 bg-lumira-dark text-white rounded-xl font-bold text-lg hover:bg-lumira-blue transition-colors shadow-lg hover:shadow-xl">
+                            Enviar Mensagem
+                        </button>
                 </form>
             </div>
         </div>

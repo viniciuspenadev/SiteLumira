@@ -11,9 +11,9 @@ $FEATURES = [
         'icon' => 'sprout',
     ],
     [
-        'title' => 'Inovação Tech',
-        'description' => 'Ferramentas digitais integradas de forma lúdica para preparar seu filho para o mundo contemporâneo.',
-        'icon' => 'lightbulb',
+        'title' => 'Segurança Total',
+        'description' => 'Ambiente monitorado e seguro, com controle de acesso rigoroso para a tranquilidade da sua família.',
+        'icon' => 'shield-check',
     ],
     [
         'title' => 'Família na Escola',

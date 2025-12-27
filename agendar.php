@@ -223,6 +223,17 @@ include 'includes/constants.php';
                                 </div>
                             </div>
 
+                            <div class="flex items-start gap-3 mb-6">
+                                <div class="flex items-center h-5">
+                                    <input id="privacy-consent-schedule" type="checkbox" required
+                                        class="w-5 h-5 border border-gray-300 rounded focus:ring-3 focus:ring-lumira-blue/30 bg-gray-50 text-lumira-blue" />
+                                </div>
+                                <label for="privacy-consent-schedule" class="text-sm text-slate-500">
+                                    Li e concordo com a <a href="politica-de-privacidade.php" target="_blank"
+                                        class="text-lumira-blue font-bold hover:underline">Política de Privacidade</a>.
+                                </label>
+                            </div>
+
                             <button type="submit"
                                 class="w-full py-4 bg-lumira-orange hover:bg-orange-500 text-white font-bold rounded-xl text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2">
                                 <i data-lucide="calendar" class="w-5 h-5"></i> Solicitar Agendamento

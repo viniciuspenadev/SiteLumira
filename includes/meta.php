@@ -69,4 +69,30 @@
     .animate-fade-in-up {
         animation: fadeInUp 0.8s ease-out forwards;
     }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .blob-shape-1 {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+
+    .blob-shape-2 {
+        border-radius: 53% 47% 52% 48% / 36% 41% 59% 64%;
+    }
 </style>

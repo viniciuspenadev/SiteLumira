@@ -3,7 +3,8 @@
         <div class="flex flex-col md:flex-row justify-between items-center gap-8">
 
             <div class="flex flex-col items-center md:items-start">
-                <img src="assets/images/logo_original.png" alt="Colégio Lumirá" class="h-12 mb-4 w-auto" />
+                <img src="<?php echo $base_url ?? ''; ?>assets/images/logo_original.png" alt="Colégio Lumirá"
+                    class="h-12 mb-4 w-auto" />
                 <p class="text-slate-500 text-sm text-center md:text-left max-w-xs">
                     Educação com afeto, inovação e respeito à infância. Construindo o futuro hoje.
                 </p>
@@ -33,7 +34,7 @@
 </footer>
 
 <!-- Main JS -->
-<script src="js/main.js"></script>
+<script src="<?php echo $base_url ?? ''; ?>js/main.js"></script>
 </body>
 
 </html>

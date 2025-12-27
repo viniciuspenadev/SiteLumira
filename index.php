@@ -6,15 +6,15 @@ include 'includes/constants.php';
 <html lang="pt-BR">
 
 <head>
-    <!-- SEO -->
-    <title>Colégio Lumirá - Berçário e Educação Infantil na Vila Augusta, Guarulhos</title>
-    <meta name="description"
-        content="O Colégio Lumirá é referência em Educação Infantil em Guarulhos, na Vila Augusta. Proposta pedagógica afetiva, bilíngue e inovadora. Agende sua visita!" />
-    <meta name="keywords"
-        content="escola infantil vila augusta, berçário guarulhos, colégio lumirá, educação infantil guarulhos, escola vila augusta, ensino bilíngue guarulhos" />
+  <!-- SEO -->
+  <title>Colégio Lumirá - Berçário e Educação Infantil na Vila Augusta, Guarulhos</title>
+  <meta name="description"
+    content="O Colégio Lumirá é referência em Educação Infantil em Guarulhos, na Vila Augusta. Proposta pedagógica afetiva, bilíngue e inovadora. Agende sua visita!" />
+  <meta name="keywords"
+    content="escola infantil vila augusta, berçário guarulhos, colégio lumirá, educação infantil guarulhos, escola vila augusta, ensino bilíngue guarulhos" />
 
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "School",
@@ -54,30 +54,35 @@ include 'includes/constants.php';
     }
     </script>
 
-    <!-- Common Assets -->
-    <?php include 'includes/meta.php'; ?>
+  <!-- Common Assets -->
+  <?php include 'includes/meta.php'; ?>
 </head>
 
 <body class="bg-gray-50 text-slate-700 antialiased selection:bg-lumira-orange selection:text-white">
 
+  <?php
+  // Header
+  include 'includes/header.php';
+  ?>
+
+  <main>
     <?php
-    // Header
-    include 'includes/header.php';
+    // Load components in order
+    include 'components/marketing_modal.php';
+    include 'components/hero.php';
+    include 'components/about.php';
+    include 'components/methodology.php';
+    include 'components/school_life.php';
+    include 'components/classes.php';
+    // include 'components/gallery.php';
+    include 'components/faq.php';
+    include 'components/contact.php';
     ?>
+  </main>
 
-    <main>
-        <?php
-        // Load components in order
-        include 'components/marketing_modal.php';
-        include 'components/hero.php';
-        include 'components/about.php';
-        include 'components/methodology.php';
-        include 'components/school_life.php';
-        include 'components/classes.php';
-        // include 'components/gallery.php';
-        include 'components/faq.php';
-        include 'components/contact.php';
-        ?>
-    </main>
+  <?php include 'components/cookie_consent.php'; ?>
+  <?php include 'includes/footer.php'; ?>
+  <?php include 'components/chat_widget.php'; ?>
+</body>
 
-    <?php include 'includes/footer.php'; ?>
+</html>

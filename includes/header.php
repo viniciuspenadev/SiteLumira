@@ -1,8 +1,21 @@
 <?php
 // Determine if we are on the home page
-$current_page = basename($_SERVER['PHP_SELF']);
-$is_home = ($current_page == 'index.php' || $current_page == '');
-$link_prefix = $is_home ? '' : 'index.php';
+if (!isset($link_prefix)) {
+    $current_page = basename($_SERVER['PHP_SELF']);
+    $current_dir = basename(dirname($_SERVER['PHP_SELF'])); // e.g. 'lumira' or 'trabalhe-conosco'
+
+    // Check if we are in a text-based subdirectory (fragile but effective for this specific task)
+    $is_subdir = ($current_dir === 'trabalhe-conosco' || $current_dir === 'admin');
+
+    if ($is_subdir) {
+        $link_prefix = '../index.php';
+        $base_url = '../'; // For assets/links
+    } else {
+        $is_home = ($current_page == 'index.php' || $current_page == '');
+        $link_prefix = $is_home ? '' : 'index.php';
+        $base_url = '';
+    }
+}
 
 $navItems = [
     [
@@ -32,24 +45,22 @@ $navItems = [
             ['label' => 'Pré-Escola', 'href' => $link_prefix . '#classes', 'description' => '4 a 6 anos', 'image' => 'assets/images/IMG_1351.jpg']
         ]
     ],
-    /*
     [
-        'label' => 'Galeria',
-        'href' => $link_prefix . '#gallery',
-        'image' => 'https://images.unsplash.com/photo-1596464716127-f9a82763ef5c?q=80&w=600&auto=format&fit=crop',
-        'description' => 'Dia a dia no Lumirá'
+        'label' => 'Trabalhe Conosco',
+        // If in subdir, go to index.php (which is the trabalhe-conosco main page in that dir)
+        // If in root, go to trabalhe-conosco/index.php
+        'href' => ($is_subdir ?? false) && $current_dir === 'trabalhe-conosco' ? 'index.php' : ($base_url ?? '') . 'trabalhe-conosco/index.php'
     ],
-    */
 ];
 ?>
 
 <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent py-4">
     <div class="container mx-auto px-4 md:px-8 relative">
         <div class="flex items-center justify-between">
-            <a href="<?php echo $link_prefix; ?>index.php"
+            <a href="<?php echo $link_prefix; ?>"
                 class="flex-shrink-0 transition-transform hover:scale-105 relative z-50">
                 <?php $className = "h-16 md:h-20";
-                include 'includes/logo.php'; ?>
+                include __DIR__ . '/logo.php'; ?>
             </a>
 
             <!-- Desktop Nav -->
@@ -119,7 +130,7 @@ $navItems = [
                     </div>
                 <?php endforeach; ?>
 
-                <a href="agendar.php"
+                <a href="<?php echo ($base_url ?? '') . 'agendar.php'; ?>"
                     class="ml-4 px-6 py-2.5 bg-lumira-orange text-white rounded-full font-bold text-sm shadow-md hover:shadow-lg hover:bg-orange-500 transition-all transform hover:-translate-y-0.5 relative z-10">
                     Agendar Visita
                 </a>
@@ -155,7 +166,7 @@ $navItems = [
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>
-        <a href="agendar.php"
+        <a href="<?php echo ($base_url ?? '') . 'agendar.php'; ?>"
             class="w-full py-4 bg-lumira-orange text-white rounded-xl font-bold text-xl shadow-lg mt-4 text-center block">
             Agendar Visita
         </a>

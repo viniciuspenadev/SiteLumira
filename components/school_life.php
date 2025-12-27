@@ -50,6 +50,7 @@
             <div class="w-full lg:w-2/3 relative min-h-[500px]">
                 <?php foreach ($SCHOOL_ACTIVITIES as $index => $activity):
                     $isActive = $index === 0;
+                    $blobClass = $index % 2 === 0 ? 'blob-shape-2' : 'blob-shape-1';
                     ?>
                     <div class="activity-content flex flex-col md:flex-row gap-10 items-center animate-fade-in absolute inset-0 transition-opacity duration-500 <?php echo $isActive ? 'opacity-100 relative z-10 pointer-events-auto' : 'opacity-0 absolute z-0 pointer-events-none hidden'; ?>"
                         id="activity-<?php echo $activity['id']; ?>">
@@ -79,7 +80,7 @@
                         <!-- Image -->
                         <div class="w-full md:w-1/2 relative order-1 md:order-2 h-[400px]">
                             <div
-                                class="relative h-full w-full rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-white group">
+                                class="relative h-full w-full <?php echo $blobClass; ?> overflow-hidden shadow-2xl border-8 border-white group animate-float">
                                 <img src="<?php echo $activity['image']; ?>" alt="<?php echo $activity['title']; ?>"
                                     class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" />
 
@@ -87,9 +88,11 @@
                                 <div
                                     class="absolute bottom-6 left-6 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-lg max-w-[220px] animate-fade-in-up">
                                     <p class="text-xs text-slate-500 uppercase font-bold mb-1">
-                                        <?php echo $activity['floatingCard']['title']; ?></p>
+                                        <?php echo $activity['floatingCard']['title']; ?>
+                                    </p>
                                     <p class="text-lumira-dark font-bold text-sm">
-                                        <?php echo $activity['floatingCard']['text']; ?></p>
+                                        <?php echo $activity['floatingCard']['text']; ?>
+                                    </p>
                                 </div>
                             </div>
 

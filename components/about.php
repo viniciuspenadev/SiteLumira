@@ -7,7 +7,7 @@
             <!-- Interactive Video Container -->
             <div class="w-full lg:w-1/2 relative group" id="video-container">
                 <div
-                    class="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-video bg-gray-900 border-4 border-white">
+                    class="relative blob-shape-1 overflow-hidden shadow-2xl aspect-video bg-gray-900 border-8 border-white animate-float">
 
                     <!-- Simulated Video Content (Playing State) -->
                     <div id="video-playing"
