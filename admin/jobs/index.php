@@ -1,6 +1,6 @@
 <?php
-session_start();
-if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+// Auth Check (Cookie-based to match login.php)
+if (!isset($_COOKIE['sb_access_token'])) {
     header('Location: ../login.php');
     exit;
 }
@@ -8,12 +8,9 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 $secrets = include '../../includes/secrets.php';
 include '../../includes/supabase_helper.php';
 
-// DEBUG: Enable errors to diagnose VPS issues
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 $supabase = new SupabaseHelper($secrets['SUPABASE_URL'], $secrets['SUPABASE_KEY']);
-$supabase->setToken($secrets['SUPABASE_KEY']);
+// Use User Token for elevated privileges (RLS)
+$supabase->setToken($_COOKIE['sb_access_token']);
 
 // Handle Actions
 if (isset($_GET['delete_id'])) {
