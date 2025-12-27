@@ -36,7 +36,9 @@ class SupabaseHelper
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // For local XAMPP dev
+        // SSL Verification
+        $isLocal = ($_SERVER['SERVER_NAME'] === 'localhost' || $_SERVER['SERVER_NAME'] === '127.0.0.1');
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, !$isLocal);
 
         if ($data) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));

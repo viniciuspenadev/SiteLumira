@@ -8,6 +8,10 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 $secrets = include '../../includes/secrets.php';
 include '../../includes/supabase_helper.php';
 
+// DEBUG: Enable errors to diagnose VPS issues
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 $supabase = new SupabaseHelper($secrets['SUPABASE_URL'], $secrets['SUPABASE_KEY']);
 $supabase->setToken($secrets['SUPABASE_KEY']);
 
@@ -33,7 +37,18 @@ if (isset($_GET['open_id'])) {
     exit;
 }
 
-$jobs = $supabase->getJobs(false);
+$jobs = [];
+$error_msg = null;
+try {
+    $jobs = $supabase->getJobs(false);
+    if (!is_array($jobs)) {
+        // If API returns null/false
+        $error_msg = "Retorno inválido da API. Verifique as chaves.";
+        $jobs = []; // Ensure array
+    }
+} catch (Exception $e) {
+    $error_msg = "Erro de Conexão: " . $e->getMessage();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -68,6 +83,13 @@ $jobs = $supabase->getJobs(false);
 
         <!-- Main Scrollable Area -->
         <main class="flex-1 overflow-y-auto p-8 bg-gray-50/50">
+
+            <?php if ($error_msg): ?>
+                <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded shadow-sm" role="alert">
+                    <p class="font-bold">Erro!</p>
+                    <p><?php echo htmlspecialchars($error_msg); ?></p>
+                </div>
+            <?php endif; ?>
 
             <!-- Key Stats -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -150,15 +172,18 @@ $jobs = $supabase->getJobs(false);
                                     </td>
                                     <td class="px-4 py-4">
                                         <?php if (!$job['active']): ?>
-                                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-slate-100 text-slate-500 border border-slate-200">
+                                            <span
+                                                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-slate-100 text-slate-500 border border-slate-200">
                                                 <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span> ARQUIVADA
                                             </span>
                                         <?php elseif (($job['status'] ?? 'open') === 'closed'): ?>
-                                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-orange-50 text-orange-600 border border-orange-100">
+                                            <span
+                                                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-orange-50 text-orange-600 border border-orange-100">
                                                 <span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span> ENCERRADA
                                             </span>
                                         <?php else: ?>
-                                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-green-50 text-green-600 border border-green-100">
+                                            <span
+                                                class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-green-50 text-green-600 border border-green-100">
                                                 <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> ABERTA
                                             </span>
                                         <?php endif; ?>
@@ -174,7 +199,7 @@ $jobs = $supabase->getJobs(false);
                                                 title="Ver Candidatos">
                                                 <i data-lucide="users" class="w-4 h-4"></i>
                                             </a>
-                                            
+
                                             <div class="w-px h-4 bg-gray-200 mx-1"></div>
 
                                             <!-- Status / Archive Actions -->
