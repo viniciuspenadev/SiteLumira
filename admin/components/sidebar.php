@@ -11,7 +11,29 @@ $is_chat = strpos($current_uri, 'dashboard') !== false;
 $is_jobs = strpos($current_uri, 'admin/jobs') !== false;
 ?>
 <!-- Main Navigation Rail (Desktop Only) -->
-<div class="w-20 bg-lumira-dark hidden lg:flex flex-col items-center py-6 shrink-0 z-50 desktop-sidebar">
+<div id="admin-sidebar"
+    class="w-20 bg-lumira-dark hidden lg:flex flex-col items-center py-6 shrink-0 z-50 desktop-sidebar"
+    style="display: none;">
+    <!-- Inline Script: Force hide on mobile IMMEDIATELY -->
+    <script>
+        (function () {
+            var sidebar = document.getElementById('admin-sidebar');
+            if (window.innerWidth >= 1024) {
+                sidebar.style.display = 'flex';
+            } else {
+                sidebar.style.display = 'none';
+            }
+
+            // Update on resize
+            window.addEventListener('resize', function () {
+                if (window.innerWidth >= 1024) {
+                    sidebar.style.display = 'flex';
+                } else {
+                    sidebar.style.display = 'none';
+                }
+            });
+        })();
+    </script>
     <!-- Logo Icon -->
     <div class="mb-8">
         <div class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-white">
