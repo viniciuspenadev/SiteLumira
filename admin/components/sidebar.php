@@ -1,7 +1,13 @@
 <?php
-// Determine active page for highlighting
+// Base Path Logic for Admin
+$base_admin = '/admin/';
+if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false || strpos($_SERVER['HTTP_HOST'], '127.0.0.1') !== false) {
+    $base_admin = '/lumira/admin/';
+}
+
+// Determine active page
 $current_uri = $_SERVER['REQUEST_URI'];
-$is_chat = strpos($current_uri, 'dashboard.php') !== false;
+$is_chat = strpos($current_uri, 'dashboard') !== false;
 $is_jobs = strpos($current_uri, 'admin/jobs') !== false;
 ?>
 <!-- Main Navigation Rail -->
@@ -20,7 +26,7 @@ $is_jobs = strpos($current_uri, 'admin/jobs') !== false;
     <div class="flex-1 w-full space-y-4 px-2">
 
         <!-- Chat / CRM -->
-        <a href="/lumira/admin/dashboard.php"
+        <a href="<?php echo $base_admin; ?>dashboard"
             class="group flex flex-col items-center justify-center p-3 rounded-xl transition-all <?php echo $is_chat ? 'bg-lumira-blue text-white shadow-lg' : 'text-slate-400 hover:bg-white/5 hover:text-white'; ?>"
             title="Atendimento (Chat)">
             <i data-lucide="message-square" class="w-6 h-6 mb-1"></i>
@@ -28,7 +34,7 @@ $is_jobs = strpos($current_uri, 'admin/jobs') !== false;
         </a>
 
         <!-- Jobs / Vagas -->
-        <a href="/lumira/admin/jobs/index.php"
+        <a href="<?php echo $base_admin; ?>jobs/"
             class="group flex flex-col items-center justify-center p-3 rounded-xl transition-all <?php echo $is_jobs ? 'bg-lumira-blue text-white shadow-lg' : 'text-slate-400 hover:bg-white/5 hover:text-white'; ?>"
             title="Gerenciar Vagas">
             <i data-lucide="briefcase" class="w-6 h-6 mb-1"></i>
@@ -39,7 +45,7 @@ $is_jobs = strpos($current_uri, 'admin/jobs') !== false;
 
     <!-- Bottom Actions -->
     <div class="mt-auto px-2 w-full space-y-4">
-        <a href="/lumira/admin/logout.php"
+        <a href="<?php echo $base_admin; ?>logout"
             class="group flex flex-col items-center justify-center p-3 rounded-xl text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition-all"
             title="Sair">
             <i data-lucide="log-out" class="w-6 h-6"></i>
