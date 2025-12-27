@@ -1,20 +1,14 @@
 <?php
 // Determine if we are on the home page
-if (!isset($link_prefix)) {
-    $current_page = basename($_SERVER['PHP_SELF']);
-    $current_dir = basename(dirname($_SERVER['PHP_SELF'])); // e.g. 'lumira' or 'trabalhe-conosco'
-
-    // Check if we are in a text-based subdirectory (fragile but effective for this specific task)
-    $is_subdir = ($current_dir === 'trabalhe-conosco' || $current_dir === 'admin');
-
-    if ($is_subdir) {
-        $link_prefix = '../index.php';
-        $base_url = '../'; // For assets/links
-    } else {
-        $is_home = ($current_page == 'index.php' || $current_page == '');
-        $link_prefix = $is_home ? '' : 'index.php';
-        $base_url = '';
+// Determine Web Root for Absolute Paths (Fixes Clean URL issues)
+if (!isset($base_url)) {
+    $base_url = '/';
+    $host = $_SERVER['HTTP_HOST'] ?? '';
+    // Adjust for Localhost XAMPP subfolder
+    if (strpos($host, 'localhost') !== false || strpos($host, '127.0.0.1') !== false) {
+        $base_url = '/lumira/';
     }
+    $link_prefix = $base_url;
 }
 
 $navItems = [
@@ -47,9 +41,8 @@ $navItems = [
     ],
     [
         'label' => 'Trabalhe Conosco',
-        // If in subdir, go to index.php (which is the trabalhe-conosco main page in that dir)
-        // If in root, go to trabalhe-conosco/index.php
-        'href' => ($is_subdir ?? false) && $current_dir === 'trabalhe-conosco' ? 'index.php' : ($base_url ?? '') . 'trabalhe-conosco/index.php'
+        // Absolute path to module folder (Clean URL)
+        'href' => $base_url . 'trabalhe-conosco'
     ],
 ];
 ?>
@@ -166,7 +159,7 @@ $navItems = [
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>
-        <a href="<?php echo ($base_url ?? '') . 'agendar.php'; ?>"
+        <a href="<?php echo $base_url . 'agendar'; ?>"
             class="w-full py-4 bg-lumira-orange text-white rounded-xl font-bold text-xl shadow-lg mt-4 text-center block">
             Agendar Visita
         </a>

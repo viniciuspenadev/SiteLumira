@@ -6,13 +6,34 @@
 
             <!-- Interactive Video Container -->
             <div class="w-full lg:w-1/2 relative group" id="video-container">
+
+                <!-- Floating Icons -->
+                <div class="absolute -top-6 -left-6 z-20 animate-bounce duration-[3000ms]">
+                    <div
+                        class="w-12 h-12 bg-white rounded-2xl shadow-lg flex items-center justify-center text-lumira-orange transform -rotate-12">
+                        <i data-lucide="book-open" class="w-6 h-6"></i>
+                    </div>
+                </div>
+                <div class="absolute -bottom-6 -right-6 z-20 animate-bounce duration-[4000ms] delay-700">
+                    <div
+                        class="w-12 h-12 bg-white rounded-2xl shadow-lg flex items-center justify-center text-lumira-blue transform rotate-12">
+                        <i data-lucide="palette" class="w-6 h-6"></i>
+                    </div>
+                </div>
+                <div class="absolute top-1/2 -right-8 z-20 animate-bounce duration-[3500ms] delay-500">
+                    <div
+                        class="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center text-green-500">
+                        <i data-lucide="star" class="w-5 h-5"></i>
+                    </div>
+                </div>
+
                 <div
-                    class="relative blob-shape-1 overflow-hidden shadow-2xl aspect-video bg-gray-900 border-8 border-white animate-float">
+                    class="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-video bg-gray-900 border-8 border-white transform transition-transform duration-500 hover:scale-[1.02]">
 
                     <!-- Simulated Video Content (Playing State) -->
                     <div id="video-playing"
                         class="absolute inset-0 transition-opacity duration-700 opacity-0 pointer-events-none">
-                        <img src="assets/images/edu_celebrada.JPG" class="w-full h-full object-cover opacity-60"
+                        <img src="assets/images/hero_01.jpg" class="w-full h-full object-cover opacity-60"
                             alt="Video Background" />
                         <div class="absolute inset-0 flex items-center justify-center">
                             <p class="text-white font-bold animate-pulse">Vídeo Reproduzindo...</p>
@@ -21,7 +42,7 @@
 
                     <!-- Cover Image & Interaction Layer (Visible when not playing) -->
                     <div id="video-cover" class="absolute inset-0 transition-all duration-500 opacity-100">
-                        <img src="assets/images/edu_celebrada.JPG" alt="Crianças aprendendo"
+                        <img src="assets/images/hero_01.jpg" alt="Crianças aprendendo"
                             class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                         <div
                             class="absolute inset-0 bg-lumira-dark/30 backdrop-blur-[1px] group-hover:backdrop-blur-0 transition-all duration-500">
