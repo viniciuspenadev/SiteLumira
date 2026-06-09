@@ -14,14 +14,16 @@ include 'includes/constants.php';
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.colegiolumira.com/" />
   <meta property="og:title" content="Colégio Lumirá - Berçário e Educação Infantil na Vila Augusta, Guarulhos" />
-  <meta property="og:description" content="O Colégio Lumirá é referência em Educação Infantil em Guarulhos, na Vila Augusta. Proposta pedagógica afetiva, bilíngue e inovadora. Agende sua visita!" />
+  <meta property="og:description"
+    content="O Colégio Lumirá é referência em Educação Infantil em Guarulhos, na Vila Augusta. Proposta pedagógica afetiva, bilíngue e inovadora. Agende sua visita!" />
   <meta property="og:image" content="https://www.colegiolumira.com/assets/logo_og.png" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://www.colegiolumira.com/" />
   <meta property="twitter:title" content="Colégio Lumirá - Berçário e Educação Infantil na Vila Augusta, Guarulhos" />
-  <meta property="twitter:description" content="O Colégio Lumirá é referência em Educação Infantil em Guarulhos, na Vila Augusta. Proposta pedagógica afetiva, bilíngue e inovadora. Agende sua visita!" />
+  <meta property="twitter:description"
+    content="O Colégio Lumirá é referência em Educação Infantil em Guarulhos, na Vila Augusta. Proposta pedagógica afetiva, bilíngue e inovadora. Agende sua visita!" />
   <meta property="twitter:image" content="https://www.colegiolumira.com/assets/logo_og.png" />
 
   <!-- Schema.org JSON-LD -->
@@ -30,7 +32,7 @@ include 'includes/constants.php';
       "@context": "https://schema.org",
       "@type": "School",
       "name": "Colégio Lumirá",
-      "image": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b",
+      "image": "https://www.colegiolumira.com/assets/logo_og.png",
       "description": "Escola de Educação Infantil e Berçário na Vila Augusta, Guarulhos, com pedagogia afetiva e inovadora.",
       "address": {
         "@type": "PostalAddress",
