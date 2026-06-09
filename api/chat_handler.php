@@ -5,8 +5,8 @@ header('Content-Type: application/json');
 $allowed_origins = [
     'http://localhost',
     'http://127.0.0.1',
-    'https://colegiolumira.com.br',
-    'https://www.colegiolumira.com.br',
+    'https://colegiolumira.com',
+    'https://www.colegiolumira.com',
     'https://lumira.aiconverse.com.br'
 ];
 
@@ -194,7 +194,6 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, !$isLocal);
 
 $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
 
 if ($httpCode !== 200) {
     error_log("Gemini Error ({$httpCode}): " . $response);
@@ -242,7 +241,6 @@ EOT;
         curl_setopt($ch2, CURLOPT_SSL_VERIFYPEER, !$isLocal);
 
         $analysisRaw = curl_exec($ch2);
-        curl_close($ch2);
 
         $analysisData = json_decode(json_decode($analysisRaw, true)['candidates'][0]['content']['parts'][0]['text'] ?? '{}', true);
 

@@ -10,8 +10,19 @@ include 'includes/constants.php';
   <title>Colégio Lumirá - Berçário e Educação Infantil na Vila Augusta, Guarulhos</title>
   <meta name="description"
     content="O Colégio Lumirá é referência em Educação Infantil em Guarulhos, na Vila Augusta. Proposta pedagógica afetiva, bilíngue e inovadora. Agende sua visita!" />
-  <meta name="keywords"
-    content="escola infantil vila augusta, berçário guarulhos, colégio lumirá, educação infantil guarulhos, escola vila augusta, ensino bilíngue guarulhos" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="http://www.colegiolumira.com/" />
+  <meta property="og:title" content="Colégio Lumirá - Berçário e Educação Infantil na Vila Augusta, Guarulhos" />
+  <meta property="og:description" content="O Colégio Lumirá é referência em Educação Infantil em Guarulhos, na Vila Augusta. Proposta pedagógica afetiva, bilíngue e inovadora. Agende sua visita!" />
+  <meta property="og:image" content="http://www.colegiolumira.com/assets/logo_og.png" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="http://www.colegiolumira.com/" />
+  <meta property="twitter:title" content="Colégio Lumirá - Berçário e Educação Infantil na Vila Augusta, Guarulhos" />
+  <meta property="twitter:description" content="O Colégio Lumirá é referência em Educação Infantil em Guarulhos, na Vila Augusta. Proposta pedagógica afetiva, bilíngue e inovadora. Agende sua visita!" />
+  <meta property="twitter:image" content="http://www.colegiolumira.com/assets/logo_og.png" />
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -34,7 +45,7 @@ include 'includes/constants.php';
         "latitude": -23.4705,
         "longitude": -46.5418
       },
-      "url": "http://www.colegiolumira.com.br",
+      "url": "http://www.colegiolumira.com",
       "telephone": "+5511934921031",
       "priceRange": "$$$",
       "openingHoursSpecification": [

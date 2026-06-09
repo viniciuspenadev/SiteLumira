@@ -87,8 +87,8 @@ include 'includes/constants.php';
 
                 <h3>7. Contato do Encarregado (DPO)</h3>
                 <p>Para exercer seus direitos ou tirar dúvidas sobre esta política, entre em contato conosco pelo email:
-                    <a href="mailto:contato@colegiolumira.com.br"
-                        class="text-lumira-blue font-bold">contato@colegiolumira.com.br</a>.
+                    <a href="mailto:contato@colegiolumira.com"
+                        class="text-lumira-blue font-bold">contato@colegiolumira.com</a>.
                 </p>
 
                 <p class="text-sm text-slate-500 mt-12 pt-8 border-t border-gray-100">

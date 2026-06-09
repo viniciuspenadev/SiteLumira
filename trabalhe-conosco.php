@@ -123,7 +123,7 @@ include 'data/jobs.php';
                         </p>
                     </div>
 
-                    <a href="mailto:rh@colegiolumira.com.br"
+                    <a href="mailto:rh@colegiolumira.com"
                         class="inline-flex items-center gap-2 text-sm font-bold hover:text-white/80 transition-colors">
                         Enviar Currículo
                         <i data-lucide="arrow-right" class="w-4 h-4"></i>
@@ -133,8 +133,8 @@ include 'data/jobs.php';
 
             <div class="mt-20 text-center">
                 <p class="text-slate-500 text-sm">
-                    Dúvidas sobre o processo? Entre em contato pelo email <a href="mailto:rh@colegiolumira.com.br"
-                        class="text-lumira-blue font-bold hover:underline">rh@colegiolumira.com.br</a>
+                    Dúvidas sobre o processo? Entre em contato pelo email <a href="mailto:rh@colegiolumira.com"
+                        class="text-lumira-blue font-bold hover:underline">rh@colegiolumira.com</a>
                 </p>
             </div>
 

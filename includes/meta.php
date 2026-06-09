@@ -7,29 +7,24 @@
 <!-- Lucide Icons -->
 <script src="https://unpkg.com/lucide@latest"></script>
 
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                fontFamily: {
-                    sans: ['Nunito', 'sans-serif'],
-                },
-                colors: {
-                    lumira: {
-                        blue: '#5C8D9D', // Muted Teal from Logo
-                        orange: '#F59E3F', // Warm Orange from Logo
-                        dark: '#35525E',
-                        light: '#EBF4F7',
-                    }
-                }
-            }
-        }
-    }
-</script>
+<!-- Tailwind CSS (Compiled) -->
+<link rel="stylesheet" href="<?php echo $base_url ?? '/'; ?>assets/css/style.css">
 
 <style>
+    /* 
+       Expertise Dev: Tipografia Fluida 
+       Garante que os títulos escalem suavemente entre mobile e desktop 1366px+
+    */
+    .text-fluid-h1 {
+        font-size: clamp(2.25rem, 5vw + 1rem, 4.5rem);
+        line-height: 1.1;
+    }
+
+    .text-fluid-h2 {
+        font-size: clamp(1.875rem, 4vw + 0.5rem, 3rem);
+        line-height: 1.2;
+    }
+
     /* Smooth scrolling for anchor links */
     html {
         scroll-behavior: smooth;

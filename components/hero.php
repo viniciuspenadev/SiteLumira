@@ -24,10 +24,10 @@
                 <?php foreach ($CAROUSEL_IMAGES as $index => $image): ?>
                     <div class="hero-text <?php echo $index === 0 ? 'block' : 'hidden'; ?>"
                         data-index="<?php echo $index; ?>">
-                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight drop-shadow-lg">
+                        <h1 class="text-fluid-h1 font-bold mb-6 drop-shadow-lg">
                             <?php echo $image['caption']; ?>
                         </h1>
-                        <p class="text-lg md:text-2xl mb-8 font-light text-gray-100 max-w-lg drop-shadow-md">
+                        <p class="text-lg md:text-xl lg:text-2xl mb-8 font-light text-gray-100 max-w-lg drop-shadow-md">
                             <?php echo $image['subcaption']; ?>
                         </p>
                     </div>

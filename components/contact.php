@@ -45,7 +45,7 @@
                         </div>
                         <div>
                             <h4 class="font-bold text-lumira-dark text-lg">Email</h4>
-                            <p class="text-slate-600">contato@colegiolumira.com.br</p>
+                            <p class="text-slate-600">contato@colegiolumira.com</p>
                         </div>
                     </div>
 
