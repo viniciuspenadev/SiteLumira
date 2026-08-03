@@ -1,3 +1,19 @@
+<?php
+$meta_base_url = $base_url ?? '/';
+
+if (!isset($base_url)) {
+    $meta_host = $_SERVER['HTTP_HOST'] ?? '';
+
+    if (strpos($meta_host, 'localhost') !== false || strpos($meta_host, '127.0.0.1') !== false) {
+        $meta_base_url = '/lumira/';
+    }
+}
+
+$style_version = file_exists(__DIR__ . '/../assets/css/style.css')
+    ? filemtime(__DIR__ . '/../assets/css/style.css')
+    : '1';
+?>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -8,7 +24,7 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <!-- Tailwind CSS (Compiled) -->
-<link rel="stylesheet" href="<?php echo $base_url ?? '/'; ?>assets/css/style.css">
+<link rel="stylesheet" href="<?php echo htmlspecialchars($meta_base_url, ENT_QUOTES, 'UTF-8'); ?>assets/css/style.css?v=<?php echo urlencode((string) $style_version); ?>">
 
 <style>
     /* 

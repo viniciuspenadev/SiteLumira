@@ -31,12 +31,13 @@ $navItems = [
     [
         'label' => 'Turmas',
         'href' => $link_prefix . '#classes',
-        'image' => 'assets/images/IMG_3428.jpg',
+        'image' => 'assets/images/mini-maternal-horta.png',
         'description' => 'Ciclos de aprendizado para cada fase.',
         'children' => [
-            ['label' => 'Berçário', 'href' => $link_prefix . '#classes', 'description' => '4 meses a 2 anos', 'image' => 'assets/images/IMG_3428.jpg'],
-            ['label' => 'Maternal', 'href' => $link_prefix . '#classes', 'description' => '2 a 4 anos', 'image' => 'assets/images/IMG_7928.jpg'],
-            ['label' => 'Pré-Escola', 'href' => $link_prefix . '#classes', 'description' => '4 a 6 anos', 'image' => 'assets/images/IMG_1351.jpg']
+            ['label' => 'Mini-Maternal', 'href' => $link_prefix . '#classes', 'description' => '1 a 3 anos', 'image' => 'assets/images/mini-maternal-horta.png'],
+            ['label' => 'Maternal', 'href' => $link_prefix . '#classes', 'description' => '3 a 4 anos', 'image' => 'assets/images/maternal-vivencias.png'],
+            ['label' => 'Jardim 1', 'href' => $link_prefix . '#classes', 'description' => '4 anos a 5 anos', 'image' => 'assets/images/jardim-1-artes.png'],
+            ['label' => 'Jardim 2 (Pré)', 'href' => $link_prefix . '#classes', 'description' => '5 anos a 6 anos', 'image' => 'assets/images/IMG_1351.jpg']
         ]
     ],
     [

@@ -9,11 +9,11 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-start gap-8">
             <?php foreach ($CLASSES as $cls): ?>
                 <div
                     class="group relative bg-white rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col overflow-hidden hover:-translate-y-2">
-                    <div class="h-48 overflow-hidden relative">
+                    <div class="h-64 overflow-hidden relative">
                         <img src="<?php echo $cls['image']; ?>" alt="<?php echo $cls['title']; ?>"
                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                         <div class="absolute inset-0 bg-gradient-to-t from-lumira-dark/80 to-transparent opacity-60"></div>
@@ -27,21 +27,30 @@
                     </div>
 
                     <div class="p-8 flex-1 flex flex-col">
-                        <p class="text-slate-600 mb-6 leading-relaxed">
+                        <p class="text-slate-600 mb-6 leading-relaxed lg:min-h-[19rem]">
                             <?php echo $cls['description']; ?>
                         </p>
 
-                        <ul class="space-y-3 mt-auto">
-                            <?php foreach ($cls['features'] as $feat): ?>
-                                <li class="flex items-center gap-3 text-sm font-medium text-lumira-dark/80">
-                                    <div
-                                        class="w-6 h-6 rounded-full bg-lumira-light flex items-center justify-center text-lumira-blue shrink-0">
-                                        <i data-lucide="check" class="w-3.5 h-3.5" stroke-width="3"></i>
-                                    </div>
-                                    <?php echo $feat; ?>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
+                        <details class="group mt-auto border-t border-gray-100 pt-4">
+                            <summary
+                                class="list-none cursor-pointer flex items-center justify-between gap-3 rounded-xl bg-lumira-light/50 px-4 py-3 text-sm font-bold text-lumira-dark transition-colors hover:bg-lumira-light focus:outline-none focus:ring-2 focus:ring-lumira-blue/30 [&::-webkit-details-marker]:hidden">
+                                <span>Atividades incluídas</span>
+                                <i data-lucide="chevron-down"
+                                    class="w-5 h-5 text-lumira-blue shrink-0 transition-transform duration-300 group-open:rotate-180"></i>
+                            </summary>
+
+                            <ul class="space-y-3 pt-4">
+                                <?php foreach ($cls['features'] as $feat): ?>
+                                    <li class="flex items-center gap-3 text-sm font-semibold text-lumira-dark/80">
+                                        <div
+                                            class="w-6 h-6 rounded-full bg-lumira-light flex items-center justify-center text-lumira-blue shrink-0">
+                                            <i data-lucide="check" class="w-3.5 h-3.5" stroke-width="3"></i>
+                                        </div>
+                                        <?php echo $feat; ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </details>
                     </div>
 
                     <div

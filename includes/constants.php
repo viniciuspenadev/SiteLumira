@@ -67,25 +67,32 @@ $SCHOOL_ACTIVITIES = [
 
 $CLASSES = [
     [
-        'title' => "Berçário",
-        'age' => "4 meses a 2 anos",
-        'description' => "Um ambiente de puro acolhimento e estímulos sensoriais seguros para os primeiros passos.",
-        'image' => "assets/images/IMG_3428.jpg",
-        'features' => ["Estímulo Sensorial", "Solário Privativo", "Nutrição Especializada"]
+        'title' => "Mini-Maternal",
+        'age' => "1 a 3 anos",
+        'description' => "Cuidado, estímulo e socialização, promovendo o desenvolvimento motor, sensorial e emocional por meio de brincadeiras, música e vivências adequadas à idade, em um ambiente seguro e acolhedor.",
+        'image' => "assets/images/mini-maternal-horta.png",
+        'features' => ["Horticultura", "Contação de histórias", "Inglês", "Musicalização", "Culinária", "Acompanhamento Nutricional", "Psicomotricidade"]
     ],
     [
         'title' => "Maternal",
-        'age' => "2 a 4 anos",
-        'description' => "A fase da descoberta, da autonomia e das primeiras amizades, com muita ludicidade.",
-        'image' => "assets/images/IMG_7928.jpg",
-        'features' => ["Artes & Pintura", "Iniciação Musical", "Horta Pedagógica"]
+        'age' => "3 a 4 anos",
+        'description' => "Autonomia, criatividade e socialização, promovendo o desenvolvimento cognitivo, motor e emocional por meio de brincadeiras, projetos e vivências que estimulam a curiosidade, a comunicação e o trabalho em grupo, em um ambiente acolhedor e estimulante.",
+        'image' => "assets/images/maternal-vivencias.png",
+        'features' => ["Horticultura", "Contação de histórias", "Inglês", "Musicalização", "Culinária", "Acompanhamento nutricional", "Psicomotricidade"]
     ],
     [
-        'title' => "Pré-Escola",
-        'age' => "4 a 6 anos",
-        'description' => "Preparação para o mundo letrado com projetos investigativos e tecnologia criativa.",
+        'title' => "Jardim 1",
+        'age' => "4 anos a 5 anos",
+        'description' => "Autonomia, responsabilidade e pensamento crítico, promovendo o desenvolvimento cognitivo, socioemocional e motor por meio de vivências que estimulam a criatividade, a resolução de problemas e a convivência em grupo, em um ambiente acolhedor e desafiador.",
+        'image' => "assets/images/jardim-1-artes.png",
+        'features' => ["Horticultura", "Contação de histórias", "Inglês", "Musicalização", "Culinária", "Acompanhamento Nutricional", "Psicomotricidade"]
+    ],
+    [
+        'title' => "Jardim 2 (Pré)",
+        'age' => "5 anos a 6 anos",
+        'description' => "Preparar as crianças para a passagem ao Ensino Fundamental com cuidado, projetos pedagógicos, olhar individualizado e material estruturado, desenvolvendo autonomia e confiança. Valorizamos também o brincar como parte essencial da aprendizagem, garantindo uma transição leve, segura e acolhedora para a próxima etapa.",
         'image' => "assets/images/IMG_1351.jpg",
-        'features' => ["Letramento", "Robótica Kids", "Inglês Diário"]
+        'features' => ["Horticultura", "Contação de histórias", "Inglês", "Musicalização", "Culinária", "Acompanhamento Nutricional", "Psicomotricidade"]
     ]
 ];
 

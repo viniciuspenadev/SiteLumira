@@ -95,7 +95,6 @@ include 'includes/constants.php';
 
   <?php include 'components/cookie_consent.php'; ?>
   <?php include 'includes/footer.php'; ?>
-  <?php include 'components/chat_widget.php'; ?>
 </body>
 
 </html>
